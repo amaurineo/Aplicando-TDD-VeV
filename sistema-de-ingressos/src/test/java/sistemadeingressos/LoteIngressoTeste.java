@@ -19,7 +19,7 @@ LoteIngresso
 public class LoteIngressoTeste {
     @Test
     public void testCriarLoteIngresso() {
-        LoteIngresso lote = new LoteIngresso("L1", 500, 0, 20);
+        LoteIngresso lote = new LoteIngresso("L1", 500, 20, 0);
         assertEquals(lote.getId(),"L1", "Leitura do ID está incorreta");
         assertEquals(lote.getQuantDeIngressos(),500,"Leitura da Quantidade de Ingressos está incorreta");
         assertEquals(lote.getPerCentDesconto(),0,"Leitura da Porcentagem de Desconto  está incorreta");
@@ -28,9 +28,8 @@ public class LoteIngressoTeste {
 
     @Test
     public void testPopulaIngressos() {
-        LoteIngresso lote = new LoteIngresso("L1", 100, 20, 15); // 100 ingressos, 20% VIP, 15% desconto
-        lote.populaIngressos();
-        HashMap<String, Ingresso> ingressos = lote.getIngressos();
+        LoteIngresso lote2 = new LoteIngresso("L2", 100, 20, 15); // 100 ingressos, 20% VIP
+        HashMap<String, Ingresso> ingressos = lote2.getIngressos();
         assertEquals(20, countIngressosByType(ingressos, Ingresso.Tipo.VIP), "Quantidade de ingressos VIP está incorreta");
         assertEquals(10, countIngressosByType(ingressos, Ingresso.Tipo.MEIA_ENTRADA), "Quantidade de ingressos MEIA_ENTRADA está incorreta");
         assertEquals(70, countIngressosByType(ingressos, Ingresso.Tipo.NORMAL), "Quantidade de ingressos NORMAL está incorreta");
@@ -38,7 +37,7 @@ public class LoteIngressoTeste {
 
     // Método auxiliar para contar ingressos por tipo
     private int countIngressosByType(HashMap<String, Ingresso> ingressos, Ingresso.Tipo tipo) {
+
         return (int) ingressos.values().stream().filter(ingresso -> ingresso.getTipo() == tipo).count();
     }
-
 }
