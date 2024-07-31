@@ -9,14 +9,14 @@ class Fatura {
     private Date data;
     private double valorTotal;
     private String nomeCliente;
-    private boolean paga;
+    private boolean pago;
     private List<Pagamento> pagamentos;
 
     public Fatura(Date data, double valorTotal, String nomeCliente) {
         this.data = data;
         this.valorTotal = valorTotal;
         this.nomeCliente = nomeCliente;
-        this.paga = false;
+        this.pago = false;
         this.pagamentos = new ArrayList<>();
     }
 
@@ -32,12 +32,12 @@ class Fatura {
         return nomeCliente;
     }
 
-    public boolean isPaga() {
-        return paga;
+    public boolean isPago() {
+        return pago;
     }
 
-    public void setPaga(boolean paga) {
-        this.paga = paga;
+    public void setPago(boolean pago) {
+        this.pago = pago;
     }
 
     public void adicionarPagamento(Pagamento pagamento) {
