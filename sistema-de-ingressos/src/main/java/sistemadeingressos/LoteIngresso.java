@@ -19,7 +19,7 @@ public class LoteIngresso {
         populaIngressos();
     }
 
-    public void populaIngressos() {
+    private void populaIngressos() {
         int numVIP = (int) Math.round(this.quantDeIngressos * (this.perCentVIP / 100.0));
         int numMeia = (int) Math.round(this.quantDeIngressos * 0.10);
         int numNormal = this.quantDeIngressos - numVIP - numMeia;
@@ -41,11 +41,6 @@ public class LoteIngresso {
             Ingresso ingresso = new Ingresso(id, Ingresso.Tipo.NORMAL, Ingresso.Status.DISPONIVEL);
             ingressos.put(id, ingresso);
         }
-    }
-
-    // Método auxiliar para contar ingressos por tipo
-    public int countIngressosByType(HashMap<String, Ingresso> ingressos, Ingresso.Tipo tipo) {
-        return (int) ingressos.values().stream().filter(ingresso -> ingresso.getTipo() == tipo).count();
     }
 
     public String getId() {

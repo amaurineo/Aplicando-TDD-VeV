@@ -37,7 +37,19 @@ public class LoteIngressoTeste {
 
     // Método auxiliar para contar ingressos por tipo
     private int countIngressosByType(HashMap<String, Ingresso> ingressos, Ingresso.Tipo tipo) {
-
         return (int) ingressos.values().stream().filter(ingresso -> ingresso.getTipo() == tipo).count();
+    }
+
+    @Test
+    public void testVendeLoteTodo(){
+        LoteIngresso lote3 = new LoteIngresso("L3",100,30,25);
+        lote3.vendeLoteTodo();
+        HashMap<String, Ingresso> ingressos = lote3.getIngressos();
+        assertEquals(100,countIngressosVendidos(ingressos));
+    }
+
+    // Método auxiliar para contar ingressos Vendidos
+    private int countIngressosVendidos(HashMap<String, Ingresso> ingressos) {
+        return (int) ingressos.values().stream().filter(ingresso -> ingresso.getStatus() == Ingresso.Status.VENDIDO).count();
     }
 }
