@@ -1,19 +1,36 @@
 package sistemadeingressos;
 
 public class Ingresso {
-    private String nomeEvento;
-    private double preco;
 
-    public Ingresso(String nomeEvento, double preco) {
-        this.nomeEvento = nomeEvento;
-        this.preco = preco;
+
+    public enum Tipo { VIP, MEIA_ENTRADA, NORMAL }
+    public enum Status { VENDIDO, DISPONIVEL }
+
+    private final String id;
+    private final Tipo tipo;
+    private Status status;
+
+    public Ingresso(String id, Tipo tipo, Status status){
+        this.id=id;
+        this.tipo = tipo;
+        this.status = status;
     }
 
-    public String getNomeEvento() {
-        return nomeEvento;
+    public Status getStatus() {
+        return status;
     }
 
-    public double getPreco() {
-        return preco;
+    public void setStatus(Status status) {
+        this.status = status;
     }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+
 }
