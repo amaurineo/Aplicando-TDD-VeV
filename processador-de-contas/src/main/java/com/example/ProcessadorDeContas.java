@@ -29,12 +29,13 @@ public class ProcessadorDeContas {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(dataConta);
                 cal.add(Calendar.DAY_OF_MONTH, 15);
+                Date dataContaMais15Dias = ajustarDataParaMeiaNoite(cal.getTime());
                 
-                if (true) {
+                if (dataContaMais15Dias.compareTo(fatura.getData()) <= 0) {
                     incluirPagamento = true;
                 }
             } else if (tipoPagamento.equals("TRANSFERENCIA_BANCARIA")) {
-                if (true) {
+                if (!dataConta.after(fatura.getData())) {
                     incluirPagamento = true;
                 }
             }
