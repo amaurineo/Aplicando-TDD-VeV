@@ -6,7 +6,7 @@ import java.util.UUID;
 public class LoteIngresso {
     private final String id;
     private final int quantDeIngressos;
-    private HashMap ingressos;
+    private HashMap<String, Ingresso> ingressos;
     private final int perCentVIP;
     private final int perCentDesconto;
 
@@ -15,7 +15,7 @@ public class LoteIngresso {
         this.quantDeIngressos = quantDeIngressos;
         this.perCentVIP = perCentVIP;
         this.perCentDesconto = perCentDesconto;
-        this.ingressos = new HashMap<>();
+        this.ingressos = new HashMap<String, Ingresso>();
         populaIngressos();
     }
 
@@ -43,6 +43,11 @@ public class LoteIngresso {
         }
     }
 
+    public void vendeLoteTodo() {
+        for (Ingresso ingresso : ingressos.values()) {
+            ingresso.setStatus(Ingresso.Status.VENDIDO);
+        }
+    }
     public String getId() {
         return id;
     }

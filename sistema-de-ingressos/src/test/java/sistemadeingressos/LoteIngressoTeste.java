@@ -45,7 +45,7 @@ public class LoteIngressoTeste {
         LoteIngresso lote3 = new LoteIngresso("L3",100,30,25);
         lote3.vendeLoteTodo();
         HashMap<String, Ingresso> ingressos = lote3.getIngressos();
-        assertEquals(100,countIngressosVendidos(ingressos));
+        assertEquals(100,countIngressosVendidos(ingressos), "Método de vender todos os ingressos do lote está incorreto");
     }
 
     // Método auxiliar para contar ingressos Vendidos
