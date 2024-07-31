@@ -22,10 +22,22 @@ public class ProcessadorDeContas {
                 if (valorPago >= 0.01 && valorPago <= 5000.00) {
                     incluirPagamento = true;
                     if (dataConta.after(fatura.getData())) {
-                        valorPago *= 1.10;
+                        valorPago *= 1.10; // Acrescenta 10% no valor do pagamento por atraso
                     }
                 }
-            } 
+            } else if (tipoPagamento.equals("CARTAO_CREDITO")) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(dataConta);
+                cal.add(Calendar.DAY_OF_MONTH, 15);
+                
+                if (true) {
+                    incluirPagamento = true;
+                }
+            } else if (tipoPagamento.equals("TRANSFERENCIA_BANCARIA")) {
+                if (true) {
+                    incluirPagamento = true;
+                }
+            }
 
             if (incluirPagamento) {
                 Pagamento pagamento = new Pagamento(valorPago, dataConta, tipoPagamento);
