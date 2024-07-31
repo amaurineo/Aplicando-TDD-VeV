@@ -1,10 +1,9 @@
 package sistemadeingressos;
 
 import org.junit.Test;
-
-import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashMap;
 /*
 Pelo que Li na proposta temos uma porcentagem de tipo de ingressos VIP por lote que é customizavel,
 
