@@ -18,7 +18,7 @@ public class ProcessadorDeContasTest {
     @BeforeEach
     public void initializeTestEnvironment() {
         processador = new ProcessadorDeContas();
-        fatura = new Fatura(getDate(2023, Calendar.FEBRUARY, 20), 1500.0, "Cliente A");
+        fatura = new Fatura(getDate(2023, Calendar.FEBRUARY, 20), 1500.0, "Carimbo Miguel Porfírio");
         contas = new ArrayList<>();
     }
 
