@@ -27,6 +27,10 @@ public class SistemaIngresso {
         this.shows.get(showID).getLotes().get(loteID).vendeLoteTodo();
     }
 
+    public String relatorioDeShow(String showID) {
+        return this.shows.get(showID).gerarRelatorio();
+    }
+
     public HashMap<String, Show> getShows() {
         return shows;
     }

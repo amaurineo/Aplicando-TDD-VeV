@@ -42,17 +42,18 @@ public class SistemaIngressoTest {
         return (int) ingressos.values().stream().filter(ingresso -> ingresso.getStatus() == Ingresso.Status.VENDIDO).count();
     }
 
+    @Test
     public void testRelatorioDeShow(){
         SistemaIngresso sistema = new SistemaIngresso();
-        sistema.criarShow("Show1","14/09/2025","Zeza Pacotinho", 5000, 10000, 150.00, false);
-        sistema.criarLoteParaShow("Show1","Lote1",100, 20, 10);
+        sistema.criarShow("Show1","14/09/2025","Zeza Pacotinho", 24000,50000,2000,true);
+        sistema.criarLoteParaShow("Show1","Lote1",5000,25,20);
         sistema.cambistaCompraTudo("Show1","Lote1");
         String relatorio = sistema.relatorioDeShow("Show1");
         System.out.println(relatorio);
-        assertTrue(relatorio.contains("MeiaVendidos: 10"));
-        assertTrue(relatorio.contains("NormalVendidos: 70"));
-        assertTrue(relatorio.contains("VipVendidos: 20"));
-        assertTrue(relatorio.contains("Receita: 600,00"));
+        assertTrue(relatorio.contains("MeiaVendidos: 500"));
+        assertTrue(relatorio.contains("NormalVendidos: 3250"));
+        assertTrue(relatorio.contains("VipVendidos: 1250"));
+        assertTrue(relatorio.contains("Receita: 9618500,00"));
         assertTrue(relatorio.contains("Status: LUCRO"),"Relatório não gerou o status esperado");
     }
 
