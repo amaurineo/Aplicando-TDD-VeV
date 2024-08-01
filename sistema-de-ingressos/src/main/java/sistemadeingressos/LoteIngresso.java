@@ -19,7 +19,7 @@ public class LoteIngresso {
         populaIngressos();
     }
 
-    private void populaIngressos() {
+    public void populaIngressos() {
         int numVIP = (int) Math.round(this.quantDeIngressos * (this.perCentVIP / 100.0));
         int numMeia = (int) Math.round(this.quantDeIngressos * 0.10);
         int numNormal = this.quantDeIngressos - numVIP - numMeia;

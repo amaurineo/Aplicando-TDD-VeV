@@ -34,6 +34,67 @@ public class ShowTest {
         assertEquals(115000, show.getDespesas(), "Despesas não aumentaram corretamente para o dia especial");
     }
 
+    public void testGerarRelatorioLucro() {
+        Show show = new Show("Show3", "11/11/99", "Route 101", 5000, 10000, 100.00, false);
+        LoteIngresso lote1 = new LoteIngresso("L1", 100, 20, 10);
+
+        show.adicionarLote(lote1);
+
+        lote1.populaIngressos();
+        lote1.vendeLoteTodo();
+
+        String relatorio = show.gerarRelatorio();
+
+        System.out.println(relatorio);
+
+        assertTrue(relatorio.contains("MeiaVendidos: 10"));
+        assertTrue(relatorio.contains("NormalVendidos: 70"));
+        assertTrue(relatorio.contains("VipVendidos: 20"));
+        assertTrue(relatorio.contains("Receita: 15000.00"));
+        assertTrue(relatorio.contains("Status: LUCRO"));
+    }
+
+    @Test
+    public void testGerarRelatorioEstavel() {
+        Show show = new Show("Show4", "12/12/99", "Route 102", 10000, 5000, 100.00, false);
+        LoteIngresso lote1 = new LoteIngresso("L1", 50, 10, 20);
+
+        show.adicionarLote(lote1);
+
+        lote1.populaIngressos();
+        lote1.vendeLoteTodo();
+
+        String relatorio = show.gerarRelatorio();
+
+        System.out.println(relatorio);
+
+        assertTrue(relatorio.contains("MeiaVendidos: 5"));
+        assertTrue(relatorio.contains("NormalVendidos: 35"));
+        assertTrue(relatorio.contains("VipVendidos: 10"));
+        assertTrue(relatorio.contains("Receita: 0.00"));
+        assertTrue(relatorio.contains("Status: ESTÁVEL"));
+    }
+
+    @Test
+    public void testGerarRelatorioPrejuizo() {
+        Show show = new Show("Show5", "13/13/99", "Route 103", 20000, 10000, 100.00, false);
+        LoteIngresso lote1 = new LoteIngresso("L1", 10, 0, 0);
+
+        show.adicionarLote(lote1);
+
+        lote1.populaIngressos();
+        lote1.vendeLoteTodo();
+
+        String relatorio = show.gerarRelatorio();
+
+        System.out.println(relatorio);
+
+        assertTrue(relatorio.contains("MeiaVendidos: 1"));
+        assertTrue(relatorio.contains("NormalVendidos: 9"));
+        assertTrue(relatorio.contains("VipVendidos: 0"));
+        assertTrue(relatorio.contains("Receita: -2850.00"));
+        assertTrue(relatorio.contains("Status: PREJUÍZO"));
+    }
 
 
 
