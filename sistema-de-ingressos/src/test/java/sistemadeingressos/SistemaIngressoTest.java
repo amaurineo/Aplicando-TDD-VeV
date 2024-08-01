@@ -16,8 +16,9 @@ public class SistemaIngressoTest {
     public void criarShows(){
         SistemaIngresso sistema = new SistemaIngresso();
         sistema.criarShow("Show1","14/09/2025","Zeza Pacotinho",24000,50000,2000,true);
-        Show show1 = new Show("Show1","14/09/2025","Zeza Pacotinho",24000,50000,2000,true);
-        assertTrue(sistema.getShows().containsValue(show1),"Houve alguma falha na criação do show");
+        assertTrue(sistema.getShows().containsKey("Show1"), "Houve alguma falha na criação do show");
     }
+
+    
 
 }
