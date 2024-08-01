@@ -27,4 +27,19 @@ public class SistemaIngressoTest {
         assertTrue(sistema.getShows().get("Show1").getLotes().containsKey("Lote1"));
     }
 
+    @Test
+    public void testCambistaCompraTudo(){
+        SistemaIngresso sistema = new SistemaIngresso();
+        sistema.criarShow("Show1","14/09/2025","Zeza Pacotinho",24000,50000,2000,true);
+        sistema.criarLoteParaShow("Show1","Lote1",5000,25,20);
+        sistema.cambistaCompraTudo("Show1","Lote1");
+        HashMap<String,Ingresso> ingressos = sistema.getShows().get("Show1").getLotes().get("Lote1").getIngressos();
+        assertEquals(5000,countIngressosVendidos(ingressos), "Método de vender todos os ingressos do lote de um show está incorreto");
+    }
+
+    // Método auxiliar para contar ingressos Vendidos
+    private int countIngressosVendidos(HashMap<String, Ingresso> ingressos) {
+        return (int) ingressos.values().stream().filter(ingresso -> ingresso.getStatus() == Ingresso.Status.VENDIDO).count();
+    }
+
 }

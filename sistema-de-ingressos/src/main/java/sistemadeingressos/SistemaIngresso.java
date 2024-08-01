@@ -10,13 +10,10 @@ public class SistemaIngresso {
         this.shows = new HashMap<String, Show>();
     }
 
-
-
     public void criarShow(String id, String data, String nomeArtista, double cache, double despesas, double precoIngresso, boolean diaEspecial){
         Show show = new Show(id,data,nomeArtista,cache,despesas,precoIngresso,diaEspecial);
         this.shows.put(id,show);
     }
-
 
     public HashMap<String, Show> getShows() {
         return shows;
