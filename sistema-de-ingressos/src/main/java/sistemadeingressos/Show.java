@@ -23,6 +23,10 @@ public class Show {
         this.lotes = new HashMap<String, LoteIngresso>();
     }
 
+    public void adicionarLote(LoteIngresso lote) {
+        this.lotes.put(lote.getId(), lote);
+    }
+
     public String getId() {
         return id;
     }
