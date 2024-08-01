@@ -15,12 +15,19 @@ public class SistemaIngresso {
         this.shows.put(id,show);
     }
 
-    public HashMap<String, Show> getShows() {
-        return shows;
-    }
+
 
     public void criarLoteParaShow(String showID, String loteID, int quantDeIngresso, int perCentVIP, int perCentDesconto) {
         LoteIngresso lote1 = new LoteIngresso("Lote1",5000,25,20);
         this.shows.get(showID).adicionarLote(lote1);
+    }
+
+
+    public void cambistaCompraTudo(String showID, String loteID) {
+        this.shows.get(showID).getLotes().get(loteID).vendeLoteTodo();
+    }
+
+    public HashMap<String, Show> getShows() {
+        return shows;
     }
 }
