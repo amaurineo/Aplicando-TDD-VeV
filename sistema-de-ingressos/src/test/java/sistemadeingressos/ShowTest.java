@@ -28,6 +28,12 @@ public class ShowTest {
         assertTrue(lotes.containsKey("L1"), "O lote com ID L1 não foi encontrado");
     }
 
+    @Test
+    public void testDiaEspecialAumentaDespesas() {
+        Show show = new Show("Show3", "11/10/99", "Route 100", 10000, 100000, 100.00, true);
+        assertEquals(115000, show.getDespesas(), "Despesas não aumentaram corretamente para o dia especial");
+    }
+
 
 
 
