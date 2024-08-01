@@ -15,7 +15,7 @@ LoteIngresso
     desconto: Desconto aplicável ao lote. (max 25%)
 
 */
-public class LoteIngressoTeste {
+public class LoteIngressoTest {
     @Test
     public void testCriarLoteIngresso() {
         LoteIngresso lote = new LoteIngresso("L1", 500, 20, 0);
