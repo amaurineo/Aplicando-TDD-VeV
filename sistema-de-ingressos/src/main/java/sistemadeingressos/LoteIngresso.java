@@ -56,7 +56,7 @@ public class LoteIngresso {
         return this.quantDeIngressos;
     }
 
-    public HashMap getIngressos() {
+    public HashMap<String, Ingresso> getIngressos() {
         return ingressos;
     }
 
@@ -67,4 +67,5 @@ public class LoteIngresso {
     public int getPerCentDesconto() {
         return perCentDesconto;
     }
+
 }

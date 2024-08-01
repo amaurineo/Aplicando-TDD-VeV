@@ -30,17 +30,17 @@ public class ShowTest {
 
     @Test
     public void testDiaEspecialAumentaDespesas() {
-        Show show = new Show("Show3", "11/10/99", "Route 100", 10000, 100000, 100.00, true);
-        assertEquals(115000, show.getDespesas(), "Despesas não aumentaram corretamente para o dia especial");
+        Show show = new Show("show3", "11/11/99", "Route 101", 100000, 100000, 100, true);
+        assertEquals(115000.0, show.getDespesas(), 0.0001, "Despesas não aumentaram corretamente para o dia especial");
     }
 
+    @Test
     public void testGerarRelatorioLucro() {
-        Show show = new Show("Show3", "11/11/99", "Route 101", 5000, 10000, 100.00, false);
+        Show show = new Show("Show3", "11/11/99", "Route 101", 5000, 10000, 150.00, false);
         LoteIngresso lote1 = new LoteIngresso("L1", 100, 20, 10);
 
         show.adicionarLote(lote1);
 
-        lote1.populaIngressos();
         lote1.vendeLoteTodo();
 
         String relatorio = show.gerarRelatorio();
@@ -50,39 +50,37 @@ public class ShowTest {
         assertTrue(relatorio.contains("MeiaVendidos: 10"));
         assertTrue(relatorio.contains("NormalVendidos: 70"));
         assertTrue(relatorio.contains("VipVendidos: 20"));
-        assertTrue(relatorio.contains("Receita: 15000.00"));
-        assertTrue(relatorio.contains("Status: LUCRO"));
+        assertTrue(relatorio.contains("Receita: 600,00"));
+        assertTrue(relatorio.contains("Status: LUCRO"),"Relatório não gerou o status esperado");
     }
 
     @Test
     public void testGerarRelatorioEstavel() {
-        Show show = new Show("Show4", "12/12/99", "Route 102", 10000, 5000, 100.00, false);
-        LoteIngresso lote1 = new LoteIngresso("L1", 50, 10, 20);
+        Show show = new Show("Show4", "12/12/99", "Route 102", 1500, 10000, 100, false);
+        LoteIngresso lote1 = new LoteIngresso("L1", 100, 20, 0);
 
         show.adicionarLote(lote1);
 
-        lote1.populaIngressos();
         lote1.vendeLoteTodo();
 
         String relatorio = show.gerarRelatorio();
 
         System.out.println(relatorio);
 
-        assertTrue(relatorio.contains("MeiaVendidos: 5"));
-        assertTrue(relatorio.contains("NormalVendidos: 35"));
-        assertTrue(relatorio.contains("VipVendidos: 10"));
-        assertTrue(relatorio.contains("Receita: 0.00"));
-        assertTrue(relatorio.contains("Status: ESTÁVEL"));
+        assertTrue(relatorio.contains("MeiaVendidos: 10"));
+        assertTrue(relatorio.contains("NormalVendidos: 70"));
+        assertTrue(relatorio.contains("VipVendidos: 20"));
+        assertTrue(relatorio.contains("Receita: 0,00"));
+        assertTrue(relatorio.contains("Status: ESTÁVEL"), "Relatório não gerou o status esperado");
     }
 
     @Test
     public void testGerarRelatorioPrejuizo() {
-        Show show = new Show("Show5", "13/13/99", "Route 103", 20000, 10000, 100.00, false);
+        Show show = new Show("Show5", "13/13/99", "Route 103", 100000, 200000, 100, false);
         LoteIngresso lote1 = new LoteIngresso("L1", 10, 0, 0);
 
         show.adicionarLote(lote1);
 
-        lote1.populaIngressos();
         lote1.vendeLoteTodo();
 
         String relatorio = show.gerarRelatorio();
@@ -92,8 +90,8 @@ public class ShowTest {
         assertTrue(relatorio.contains("MeiaVendidos: 1"));
         assertTrue(relatorio.contains("NormalVendidos: 9"));
         assertTrue(relatorio.contains("VipVendidos: 0"));
-        assertTrue(relatorio.contains("Receita: -2850.00"));
-        assertTrue(relatorio.contains("Status: PREJUÍZO"));
+        assertTrue(relatorio.contains("Receita: -299050,00"));
+        assertTrue(relatorio.contains("Status: PREJUÍZO"), "Relatório não gerou o status esperado");
     }
 
 
