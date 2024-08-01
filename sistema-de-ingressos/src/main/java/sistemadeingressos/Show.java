@@ -20,6 +20,7 @@ public class Show {
         this.despesas = despesas;
         this.precoIngresso = precoIngresso;
         this.diaEspecial = diaEspecial;
+        this.lotes = new HashMap<String, LoteIngresso>();
     }
 
     public String getId() {
