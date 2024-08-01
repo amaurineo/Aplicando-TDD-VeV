@@ -8,7 +8,7 @@ public class Show {
     private final String nomeArtista;
     private HashMap<String, LoteIngresso> lotes;
     private final double cache;
-    private final double despesas;
+    private double despesas;
     private final double precoIngresso;
     private final boolean diaEspecial;
 
@@ -21,6 +21,9 @@ public class Show {
         this.precoIngresso = precoIngresso;
         this.diaEspecial = diaEspecial;
         this.lotes = new HashMap<String, LoteIngresso>();
+        if (diaEspecial) {
+            this.despesas *= 1.15;
+        }
     }
 
     public void adicionarLote(LoteIngresso lote) {
