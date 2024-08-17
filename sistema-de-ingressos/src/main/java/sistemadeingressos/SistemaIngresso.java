@@ -15,13 +15,10 @@ public class SistemaIngresso {
         this.shows.put(id,show);
     }
 
-
-
     public void criarLoteParaShow(String showID, String loteID, int quantDeIngresso, int perCentVIP, int perCentDesconto) {
-        LoteIngresso lote1 = new LoteIngresso("Lote1",5000,25,20);
+        LoteIngresso lote1 = new LoteIngresso(loteID,quantDeIngresso,perCentVIP,perCentDesconto);
         this.shows.get(showID).adicionarLote(lote1);
     }
-
 
     public void cambistaCompraTudo(String showID, String loteID) {
         this.shows.get(showID).getLotes().get(loteID).vendeLoteTodo();
