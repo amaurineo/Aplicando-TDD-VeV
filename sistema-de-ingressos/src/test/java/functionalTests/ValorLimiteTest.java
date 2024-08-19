@@ -4,9 +4,8 @@ import org.junit.Test;
 import sistemadeingressos.SistemaIngresso;
 
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.HashMap;
 
-public class FunctionalTest {
+public class ValorLimiteTest {
 
     //testes de Análise de Valores Limites  para criação de show
     @Test
@@ -183,6 +182,80 @@ public class FunctionalTest {
         } catch (IllegalArgumentException e) {
             fail("Não deveria lançar exceção para valores válidos.");
         }
+    }
 
+
+
+
+    @Test
+    public void testCriarLoteParaShowComQuantidadeIngressoInvalida() {
+        SistemaIngresso sistema = new SistemaIngresso();
+        sistema.criarShow("1", "2024-08-19", "Artista Teste", 10000, 5000, 200, false);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            sistema.criarLoteParaShow("1", "L1", -1, 20, 0);
+        });
+
+        assertEquals("Erro: Q.Ingresso inválido.", exception.getMessage());
+    }
+
+    @Test
+    public void testCriarLoteParaShowComPercentualVIPInvalido() {
+        SistemaIngresso sistema = new SistemaIngresso();
+        sistema.criarShow("1", "2024-08-19", "Artista Teste", 10000, 5000, 200, false);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            sistema.criarLoteParaShow("1", "L2", 10, 19, 0);
+        });
+
+        assertEquals("Erro: P.VIP inválido.", exception.getMessage());
+    }
+
+    @Test
+    public void testCriarLoteParaShowComPercentualDescontoInvalido() {
+        SistemaIngresso sistema = new SistemaIngresso();
+        sistema.criarShow("1", "2024-08-19", "Artista Teste", 10000, 5000, 200, false);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            sistema.criarLoteParaShow("1", "L3", 10, 25, 26);
+        });
+
+        assertEquals("Erro: P.Desconto inválido.", exception.getMessage());
+    }
+
+    @Test
+    public void testCriarLoteParaShowComQuantidadeIngressoEPercentualVIPInvalidos() {
+        SistemaIngresso sistema = new SistemaIngresso();
+        sistema.criarShow("1", "2024-08-19", "Artista Teste", 10000, 5000, 200, false);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            sistema.criarLoteParaShow("1", "L4", -1, 19, 10);
+        });
+
+        assertEquals("Erro: Q.Ingresso e P.VIP inválidos.", exception.getMessage());
+    }
+
+    @Test
+    public void testCriarLoteParaShowComPercentualVIPeDescontoInvalidos() {
+        SistemaIngresso sistema = new SistemaIngresso();
+        sistema.criarShow("1", "2024-08-19", "Artista Teste", 10000, 5000, 200, false);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            sistema.criarLoteParaShow("1", "L5", 10, 31, 26);
+        });
+
+        assertEquals("Erro: P.VIP e P.Desconto inválidos.", exception.getMessage());
+    }
+
+    @Test
+    public void testCriarLoteParaShowComTodosOsValoresInvalidos() {
+        SistemaIngresso sistema = new SistemaIngresso();
+        sistema.criarShow("1", "2024-08-19", "Artista Teste", 10000, 5000, 200, false);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            sistema.criarLoteParaShow("1", "L6", -1, 19, -1);
+        });
+
+        assertEquals("Erro: todos os valores inválidos.", exception.getMessage());
     }
 }
