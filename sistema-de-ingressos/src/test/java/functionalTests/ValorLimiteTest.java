@@ -145,7 +145,7 @@ public class ValorLimiteTest {
 
         // Teste 16
         try {
-            sistema.criarLoteParaShow("show16", "lote01",1 , 20, 0);
+            sistema.criarLoteParaShow("Show1", "lote01",1 , 20, 0);
             System.out.println("Show criado com sucesso.");
         } catch (IllegalArgumentException e) {
             fail("Não deveria lançar exceção para valores válidos.");
@@ -153,7 +153,7 @@ public class ValorLimiteTest {
 
         // Teste 17
         try {
-            sistema.criarLoteParaShow("show17", "lote01",1 , 20, 0);
+            sistema.criarLoteParaShow("Show1", "lote01",1 , 20, 0);
             System.out.println("Show criado com sucesso.");
         } catch (IllegalArgumentException e) {
             fail("Não deveria lançar exceção para valores válidos.");
@@ -161,7 +161,7 @@ public class ValorLimiteTest {
 
         // Teste 18
         try {
-            sistema.criarLoteParaShow("show18", "lote01",1 , 20, 25);
+            sistema.criarLoteParaShow("Show1", "lote01",1 , 20, 25);
             System.out.println("Show criado com sucesso.");
         } catch (IllegalArgumentException e) {
             fail("Não deveria lançar exceção para valores válidos.");
@@ -169,7 +169,7 @@ public class ValorLimiteTest {
 
         // Teste 19
         try {
-            sistema.criarLoteParaShow("show19", "lote01",10 , 25, 10);
+            sistema.criarLoteParaShow("Show1", "lote01",10 , 25, 10);
             System.out.println("Show criado com sucesso.");
         } catch (IllegalArgumentException e) {
             fail("Não deveria lançar exceção para valores válidos.");
@@ -177,16 +177,14 @@ public class ValorLimiteTest {
 
         // Teste 20
         try {
-            sistema.criarLoteParaShow("show20", "lote01",1 , 25, 25);
+            sistema.criarLoteParaShow("Show1", "lote01",1 , 25, 25);
             System.out.println("Show criado com sucesso.");
         } catch (IllegalArgumentException e) {
             fail("Não deveria lançar exceção para valores válidos.");
         }
     }
 
-
-
-
+    // Teste 21
     @Test
     public void testCriarLoteParaShowComQuantidadeIngressoInvalida() {
         SistemaIngresso sistema = new SistemaIngresso();
@@ -199,6 +197,7 @@ public class ValorLimiteTest {
         assertEquals("Erro: Q.Ingresso inválido.", exception.getMessage());
     }
 
+    // Teste 22
     @Test
     public void testCriarLoteParaShowComPercentualVIPInvalido() {
         SistemaIngresso sistema = new SistemaIngresso();
@@ -211,6 +210,7 @@ public class ValorLimiteTest {
         assertEquals("Erro: P.VIP inválido.", exception.getMessage());
     }
 
+    // Teste 23
     @Test
     public void testCriarLoteParaShowComPercentualDescontoInvalido() {
         SistemaIngresso sistema = new SistemaIngresso();
@@ -223,6 +223,7 @@ public class ValorLimiteTest {
         assertEquals("Erro: P.Desconto inválido.", exception.getMessage());
     }
 
+    // Teste 24
     @Test
     public void testCriarLoteParaShowComQuantidadeIngressoEPercentualVIPInvalidos() {
         SistemaIngresso sistema = new SistemaIngresso();
@@ -235,6 +236,7 @@ public class ValorLimiteTest {
         assertEquals("Erro: Q.Ingresso e P.VIP inválidos.", exception.getMessage());
     }
 
+    // Teste 25
     @Test
     public void testCriarLoteParaShowComPercentualVIPeDescontoInvalidos() {
         SistemaIngresso sistema = new SistemaIngresso();
@@ -247,6 +249,7 @@ public class ValorLimiteTest {
         assertEquals("Erro: P.VIP e P.Desconto inválidos.", exception.getMessage());
     }
 
+    // Teste 26
     @Test
     public void testCriarLoteParaShowComTodosOsValoresInvalidos() {
         SistemaIngresso sistema = new SistemaIngresso();

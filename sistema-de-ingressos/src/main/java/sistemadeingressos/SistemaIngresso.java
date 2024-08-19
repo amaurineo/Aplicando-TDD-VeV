@@ -36,8 +36,30 @@ public class SistemaIngresso {
     }
 
     public void criarLoteParaShow(String showID, String loteID, int quantDeIngresso, int perCentVIP, int perCentDesconto) {
-        LoteIngresso lote1 = new LoteIngresso(loteID,quantDeIngresso,perCentVIP,perCentDesconto);
-        this.shows.get(showID).adicionarLote(lote1);
+        if (quantDeIngresso <= 0) {
+            if (perCentVIP < 20 || perCentVIP > 30) {
+                if (perCentDesconto < 0 || perCentDesconto > 25) {
+                    throw new IllegalArgumentException("Erro: todos os valores inválidos.");
+                } else {
+                    throw new IllegalArgumentException("Erro: Q.Ingresso e P.VIP inválidos.");
+                }
+            } else if (perCentDesconto < 0 || perCentDesconto > 25) {
+                throw new IllegalArgumentException("Erro: Q.Ingresso e P.Desconto inválidos.");
+            } else {
+                throw new IllegalArgumentException("Erro: Q.Ingresso inválido.");
+            }
+        } else if (perCentVIP < 20 || perCentVIP > 30) {
+            if (perCentDesconto < 0 || perCentDesconto > 25) {
+                throw new IllegalArgumentException("Erro: P.VIP e P.Desconto inválidos.");
+            } else {
+                throw new IllegalArgumentException("Erro: P.VIP inválido.");
+            }
+        } else if (perCentDesconto < 0 || perCentDesconto > 25) {
+            throw new IllegalArgumentException("Erro: P.Desconto inválido.");
+        } else {
+            LoteIngresso lote1 = new LoteIngresso(loteID, quantDeIngresso, perCentVIP, perCentDesconto);
+            this.shows.get(showID).adicionarLote(lote1);
+        }
     }
 
     public void cambistaCompraTudo(String showID, String loteID) {
