@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ProcessadorDeContas {
 
-    public void processar(List<Conta> contas, Fatura fatura) {
+    public double processar(List<Conta> contas, Fatura fatura) {
         double somaPagamentos = 0;
         
         // A data da fatura já está ajustada para meia-noite na criação da fatura
@@ -20,12 +20,14 @@ public class ProcessadorDeContas {
 
             if (tipoPagamento.equals("BOLETO")) {
                 if (valorPago >= 0.01 && valorPago <= 5000.00) {
-                    incluirPagamento = true;
-                    if (dataConta.after(fatura.getData())) {
-                        valorPago *= 1.10; // Acrescenta 10% no valor do pagamento por atraso
+                    if (!dataConta.after(fatura.getData())) {
+                        if (conta.getDataPaga().after(dataConta)) {
+                            valorPago *= 1.10; // Acrescenta 10% no valor do pagamento por atraso
+                        }
+                        incluirPagamento = true;
                     }
                 }
-            } else if (tipoPagamento.equals("CARTAO_CREDITO")) {
+            } if (tipoPagamento.equals("CARTAO_CREDITO")) {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(dataConta);
                 cal.add(Calendar.DAY_OF_MONTH, 15);
@@ -42,12 +44,16 @@ public class ProcessadorDeContas {
 
             if (incluirPagamento) {
                 Pagamento pagamento = new Pagamento(valorPago, dataConta, tipoPagamento);
+
                 fatura.adicionarPagamento(pagamento);
+
                 somaPagamentos += valorPago;
             }
         }
 
         fatura.setPago(somaPagamentos >= fatura.getValorTotal());
+
+        return somaPagamentos;
     }
 
     private Date ajustarDataParaMeiaNoite(Date data) {

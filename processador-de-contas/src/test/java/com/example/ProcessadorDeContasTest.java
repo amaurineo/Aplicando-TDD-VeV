@@ -24,9 +24,9 @@ public class ProcessadorDeContasTest {
 
     @Test
     public void testProcessarContasFaturaPagaCaso1() {
-        contas.add(new Conta("001", getDate(2023, Calendar.FEBRUARY, 20), 500.0, "BOLETO"));
-        contas.add(new Conta("002", getDate(2023, Calendar.FEBRUARY, 20), 400.0, "BOLETO"));
-        contas.add(new Conta("003", getDate(2023, Calendar.FEBRUARY, 20), 600.0, "BOLETO"));
+        contas.add(new Conta("001", getDate(2023, Calendar.FEBRUARY, 20), getDate(2023, Calendar.FEBRUARY, 20), 500.0, "BOLETO"));
+        contas.add(new Conta("002", getDate(2023, Calendar.FEBRUARY, 20), getDate(2023, Calendar.FEBRUARY, 20), 400.0, "BOLETO"));
+        contas.add(new Conta("003", getDate(2023, Calendar.FEBRUARY, 20), getDate(2023, Calendar.FEBRUARY, 20), 600.0, "BOLETO"));
 
         processador.processar(contas, fatura);
         assertTrue(fatura.isPago());
@@ -34,8 +34,8 @@ public class ProcessadorDeContasTest {
 
     @Test
     public void testProcessarContasFaturaPagaCaso2() {
-        contas.add(new Conta("001", getDate(2023, Calendar.FEBRUARY, 5), 700.0, "CARTAO_CREDITO"));
-        contas.add(new Conta("002", getDate(2023, Calendar.FEBRUARY, 17), 800.0, "TRANSFERENCIA_BANCARIA"));
+        contas.add(new Conta("001", getDate(2023, Calendar.FEBRUARY, 5), getDate(2023, Calendar.FEBRUARY, 5), 700.0, "CARTAO_CREDITO"));
+        contas.add(new Conta("002", getDate(2023, Calendar.FEBRUARY, 17), getDate(2023, Calendar.FEBRUARY, 17), 800.0, "TRANSFERENCIA_BANCARIA"));
 
         processador.processar(contas, fatura);
         assertTrue(fatura.isPago());
@@ -43,8 +43,8 @@ public class ProcessadorDeContasTest {
 
     @Test
     public void testProcessarContasFaturaPendenteCaso3() {
-        contas.add(new Conta("001", getDate(2023, Calendar.FEBRUARY, 6), 700.0, "CARTAO_CREDITO"));
-        contas.add(new Conta("002", getDate(2023, Calendar.FEBRUARY, 17), 800.0, "TRANSFERENCIA_BANCARIA"));
+        contas.add(new Conta("001", getDate(2023, Calendar.FEBRUARY, 6), getDate(2023, Calendar.FEBRUARY, 6), 700.0, "CARTAO_CREDITO"));
+        contas.add(new Conta("002", getDate(2023, Calendar.FEBRUARY, 17), getDate(2023, Calendar.FEBRUARY, 17),800.0, "TRANSFERENCIA_BANCARIA"));
 
         processador.processar(contas, fatura);
         assertFalse(fatura.isPago());
