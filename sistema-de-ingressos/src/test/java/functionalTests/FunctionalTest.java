@@ -138,4 +138,51 @@ public class FunctionalTest {
             assertEquals("Erro: todos os valores inválidos.", e.getMessage());
         }
     }
+
+    @Test
+    public void testCriarLoteValoresValidos() {
+        SistemaIngresso sistema = new SistemaIngresso();
+        sistema.criarShow("Show1", "14/09/2025", "Zeza Pacotinho", 24000, 50000, 2000, true);
+
+        // Teste 16
+        try {
+            sistema.criarLoteParaShow("show16", "lote01",1 , 20, 0);
+            System.out.println("Show criado com sucesso.");
+        } catch (IllegalArgumentException e) {
+            fail("Não deveria lançar exceção para valores válidos.");
+        }
+
+        // Teste 17
+        try {
+            sistema.criarLoteParaShow("show17", "lote01",1 , 20, 0);
+            System.out.println("Show criado com sucesso.");
+        } catch (IllegalArgumentException e) {
+            fail("Não deveria lançar exceção para valores válidos.");
+        }
+
+        // Teste 18
+        try {
+            sistema.criarLoteParaShow("show18", "lote01",1 , 20, 25);
+            System.out.println("Show criado com sucesso.");
+        } catch (IllegalArgumentException e) {
+            fail("Não deveria lançar exceção para valores válidos.");
+        }
+
+        // Teste 19
+        try {
+            sistema.criarLoteParaShow("show19", "lote01",10 , 25, 10);
+            System.out.println("Show criado com sucesso.");
+        } catch (IllegalArgumentException e) {
+            fail("Não deveria lançar exceção para valores válidos.");
+        }
+
+        // Teste 20
+        try {
+            sistema.criarLoteParaShow("show20", "lote01",1 , 25, 25);
+            System.out.println("Show criado com sucesso.");
+        } catch (IllegalArgumentException e) {
+            fail("Não deveria lançar exceção para valores válidos.");
+        }
+
+    }
 }
